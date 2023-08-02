@@ -6,6 +6,7 @@ const fibonacciSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+//   Value is Types.Mixed because of array of number series
   value: {
     type: mongoose.Schema.Types.Mixed, 
     required: true,

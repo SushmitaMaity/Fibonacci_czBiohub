@@ -7,6 +7,7 @@ import cors from 'cors';
 const app = express();
 const PORT = 3001;
 
+// Middleware for HTTP requests
 app.use(bodyParser.json());
 app.use(cors()); 
 
@@ -19,23 +20,24 @@ app.get('/fibNumber/:n', async (req, res) => {
       console.log('Fetching Fibonacci numbers for n=', n);
   
       const fibonacciNumbersArray = await FibonacciNumber.find({ n });
-      console.log('fibonacciNumbersArray', fibonacciNumbersArray);
+      // If fibonacci numbers for input number 'n' are found in DB, return that else calculate
       if (fibonacciNumbersArray.length > 0) {
         const fibonacciNumbers = fibonacciNumbersArray[0].value;
         console.log('Fibonacci numbers found in the database:', fibonacciNumbers);
         return res.json({ fibonacciNumbers });
       } else {
+        // If fibonacci numbers are not found then calculate:
         if (n === 0) {
             // for 0 : base case
           const newFibonacciNumbers = [0];
           await FibonacciNumber.create({ n, value: newFibonacciNumbers });
-          console.log('Computed Fibonacci numbers:', newFibonacciNumbers);
+          console.log('Calculated Fibonacci number series:', newFibonacciNumbers);
           return res.json({ fibonacciNumbers: newFibonacciNumbers });
         } else if (n === 1) {
             // for 1 : base case
           const newFibonacciNumbers = [0, 1];
           await FibonacciNumber.create({ n, value: newFibonacciNumbers });
-          console.log('Computed Fibonacci numbers:', newFibonacciNumbers);
+          console.log('Calculated Fibonacci number series:', newFibonacciNumbers);
           return res.json({ fibonacciNumbers: newFibonacciNumbers });
         } else {
           const newFibonacciNumbers = [0, 1];
@@ -46,8 +48,8 @@ app.get('/fibNumber/:n', async (req, res) => {
         // Save new Fibonacci numbers in DB
         await FibonacciNumber.create({ n, value: newFibonacciNumbers });
   
-        // Return newly computed Fibonacci numbers
-        console.log('Computed Fibonacci numbers:', newFibonacciNumbers);
+        // Return newly calculated Fibonacci numbers
+        console.log('Calculated Fibonacci number series:', newFibonacciNumbers);
         return res.json({ fibonacciNumbers: newFibonacciNumbers });
       }
     }

@@ -1,21 +1,33 @@
-import React from 'react';
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import './App.css';
+import "./App.css";
 
+// Fibonacci screen to display series for input number 
 const Fibonacci = ({ fibonacciNumbers, number }) => {
-  let navigate = useNavigate(); 
-  const backtoHome = () =>{
-    navigate('/');
-  }
+    // Option to route back to Home screen 
+  let navigate = useNavigate();
+  const backtoHome = () => {
+    navigate("/");
+  };
   return (
-    <div className = "App">
-      {(!fibonacciNumbers || fibonacciNumbers.length === 0)? <div>
-      <h5>No Fibonacci numbers to display.</h5>
-    <button className = "button" onClick={()=>backtoHome()}>Back</button>
-    </div> : <><h1>Fibonacci Series for {number}</h1>
-      <h3>{fibonacciNumbers.join(', ')}</h3>
-      <button className = "button" onClick={()=>backtoHome()}>Back</button></>}
-      
+    <div className="App">
+        {/* Checking if passed props : fibonacciNumbers have value */}
+      {!fibonacciNumbers || fibonacciNumbers.length === 0 ? (
+        <div>
+          <h5>No Fibonacci numbers to display.</h5>
+          <button className="button" onClick={() => backtoHome()}>
+            Back
+          </button>
+        </div>
+      ) : (
+        <>
+          <h1>Fibonacci Series for {number}</h1>
+          <h3>{fibonacciNumbers.join(", ")}</h3>
+          <button className="button" onClick={() => backtoHome()}>
+            Back
+          </button>
+        </>
+      )}
     </div>
   );
 };
