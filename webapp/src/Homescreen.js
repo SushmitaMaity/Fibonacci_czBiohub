@@ -1,13 +1,22 @@
 import React from "react";
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
-function Homescreen(){
+
+function Homescreen(props){
+  let navigate = useNavigate(); 
     const [number, setNumber] = useState('');
 
-    const handleChange = (event) => {
-        setNumber(event.target.value);
-    };
+  const handleChange = (event) => {
+    setNumber(event.target.value);
+  };
+
+  const onCalculate = () => {
+    props.onCalculate(number);
+        navigate('/fibNumbers');
+  };
+  
 
    
    return (
@@ -21,8 +30,8 @@ function Homescreen(){
         value={number}
       />
 
-<h2>Calculate Fibonaaci number</h2>
-     <button className = "button">Calculate</button>
+    <h2>Calculate Fibonaaci numbers for: {number}</h2>
+     <button onClick ={onCalculate}>Calculate</button>
   </div> 
    );
 }
