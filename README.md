@@ -19,7 +19,8 @@ The Fibonacci Number Generator is a web application that allows users to generat
 git clone https://github.com/neu-mis-info6150-fall2021/final-project-team-5.git
 ```
 2. Install dependencies for the backend:
-``` cd Fibonacci_czBiohub/server
+```
+cd Fibonacci_czBiohub/server
 npm install
 ```
 3. Install dependencies for the frontend:
