@@ -27,10 +27,11 @@ function Homescreen(props) {
         name="number"
         onChange={handleChange}
         value={number}
+        min="0"
       />
 
       <h2>Calculate Fibonaaci numbers for: {number}</h2>
-      <button className="button" onClick={onCalculate}>
+      <button className="button" onClick={onCalculate} disabled={number?false:true}>
         Calculate
       </button>
     </div>
