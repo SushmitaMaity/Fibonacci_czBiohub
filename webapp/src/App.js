@@ -13,7 +13,7 @@ function App() {
       method: "GET",
       headers: {
         "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*", // CORS error
+        "Access-Control-Allow-Origin": "*", // CORS error StackOverFlow
       },
     })
       .then((res) => res.json())

@@ -40,10 +40,23 @@ app.get('/fibNumber/:n', async (req, res) => {
           console.log('Calculated Fibonacci number series:', newFibonacciNumbers);
           return res.json({ fibonacciNumbers: newFibonacciNumbers });
         } else {
-          const newFibonacciNumbers = [0, 1];
-          for (let i = 2; i <= n; i++) {
-            newFibonacciNumbers.push(newFibonacciNumbers[i - 1] + newFibonacciNumbers[i - 2]);
-          }
+          // const newFibonacciNumbers = [0, 1];
+          // for (let i = 2; i <= n; i++) {
+          //   newFibonacciNumbers.push(newFibonacciNumbers[i - 1] + newFibonacciNumbers[i - 2]);
+          // }
+          // Optimization of time and space complexity by iterative approach
+          const fibNumberMap = new Map();
+          fibNumberMap.set(0, 0);
+          fibNumberMap.set(1, 1);
+
+        for (let i = 2; i <= n; i++) {
+          const fibonacci = fibNumberMap.get(i - 1) + fibNumberMap.get(i - 2);
+          // Storing in map, to avoid recalculation
+          fibNumberMap.set(i, fibonacci);
+        }
+
+        // Retrieve newly calculated fibonacci numbers
+        const newFibonacciNumbers = Array.from(fibNumberMap.values());
   
         // Save new Fibonacci numbers in DB
         await FibonacciNumber.create({ n, value: newFibonacciNumbers });
