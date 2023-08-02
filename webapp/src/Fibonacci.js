@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import './App.css';
 
 const Fibonacci = ({ fibonacciNumbers, number }) => {
   let navigate = useNavigate(); 
@@ -7,13 +8,13 @@ const Fibonacci = ({ fibonacciNumbers, number }) => {
     navigate('/');
   }
   return (
-    <div>
+    <div className = "App">
       {(!fibonacciNumbers || fibonacciNumbers.length === 0)? <div>
       <h5>No Fibonacci numbers to display.</h5>
-    <button onClick={()=>backtoHome()}>Back</button>
+    <button className = "button" onClick={()=>backtoHome()}>Back</button>
     </div> : <><h1>Fibonacci Series for {number}</h1>
       <h3>{fibonacciNumbers.join(', ')}</h3>
-      <button onClick={()=>backtoHome()}>Back</button></>}
+      <button className = "button" onClick={()=>backtoHome()}>Back</button></>}
       
     </div>
   );

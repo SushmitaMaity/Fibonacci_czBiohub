@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import './App.css';
 
 
 function Homescreen(props){
@@ -20,7 +20,7 @@ function Homescreen(props){
 
    
    return (
-    <div>
+    <div className = "App">
     <h1>Fibonacci Series </h1>
     <input
         type="number"
@@ -31,7 +31,7 @@ function Homescreen(props){
       />
 
     <h2>Calculate Fibonaaci numbers for: {number}</h2>
-     <button onClick ={onCalculate}>Calculate</button>
+     <button className = "button" onClick ={onCalculate}>Calculate</button>
   </div> 
    );
 }
